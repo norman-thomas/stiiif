@@ -22,7 +22,7 @@ autoload -Uz vcs_info
 #use extended color palette if available
 if [[ $terminfo[colors] -ge 256 ]]; then
     turquoise="%F{81}"
-    orange="%F{208}"
+    orange="%F{166}"
     purple="%F{135}"
     hotpink="%F{161}"
     limegreen="%F{118}"
@@ -62,7 +62,7 @@ zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
 
 
 function steeef_preexec {
-    case "$(history $HISTCMD)" in
+    case "$2" in
         *git*)
             PR_GIT_UPDATE=1
             ;;
@@ -100,4 +100,3 @@ PROMPT=$'%{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%m%{$reset_color%}:%{$limeg
 if [[ "$USER" == "root" ]]; then
 PROMPT=$'%{$bg[blue]%}%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[red]%}%m%{$reset_color%}:%{$limegreen%}${PWD/#$HOME/~}%{$reset_color%} $vcs_info_msg_0_$(virtualenv_info)$ '
 fi
-
